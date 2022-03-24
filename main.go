@@ -48,6 +48,10 @@ func init() {
 	//+kubebuilder:scaffold:scheme
 }
 
+// 参照:
+//   开发一个简单的 etcd operator: https://mp.weixin.qq.com/s/EWTlMZMBh1_gw61dow-ZXA
+//   开发一个 etcd 备份的 operator: https://mp.weixin.qq.com/s/-PgOLeOEtCcNRkqPQWZAhg
+//   github: https://github.com/cnych/etcd-operator.git
 func main() {
 	var metricsAddr string
 	var enableLeaderElection bool
