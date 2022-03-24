@@ -1,5 +1,5 @@
 /*
-Copyright 2022 cnych.
+Copyright 2020 cnych.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ type EtcdClusterSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	Size  uint   `json:"size"`
+	Size  *int32 `json:"size"`
 	Image string `json:"image"`
 }
 
@@ -38,8 +38,10 @@ type EtcdClusterStatus struct {
 	// Important: Run "make" to regenerate code after modifying this file
 }
 
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
+// +kubebuilder:object:root=true
+// +kubebuilder:printcolumn:name="Image",type="string",priority=1,JSONPath=".spec.image",description="The Docker Image of EtcdCluster"
+// +kubebuilder:printcolumn:name="Size",type="integer",JSONPath=".spec.size",description="Replicas Of Etcd"
+// +kubebuilder:printcolumn:name="Age",type="date",JSONPath=".metadata.creationTimestamp"
 
 // EtcdCluster is the Schema for the etcdclusters API
 type EtcdCluster struct {
@@ -50,7 +52,7 @@ type EtcdCluster struct {
 	Status EtcdClusterStatus `json:"status,omitempty"`
 }
 
-//+kubebuilder:object:root=true
+// +kubebuilder:object:root=true
 
 // EtcdClusterList contains a list of EtcdCluster
 type EtcdClusterList struct {
